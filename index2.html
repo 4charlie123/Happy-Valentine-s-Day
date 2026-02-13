@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Can You Be My Valentine?</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* floating hearts */
+.heart{
+    position:absolute;
+    animation:float 6s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes float{
+    0%{transform:translateY(110vh) scale(0.8);}
+    100%{transform:translateY(-10vh) scale(1.4);}
+}
+
+.container{
+    position: relative;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(16px);
+    padding:45px 70px;
+    border-radius:30px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 25px 50px rgba(0,0,0,0.25);
+    z-index: 5;
+}
+
+h1{font-size:42px;margin-bottom:15px;}
+p{font-size:18px;margin-bottom:30px;}
+
+.buttons{
+    display:flex;
+    gap:30px;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+}
+
+button{
+    padding:15px 45px;
+    font-size:20px;
+    border:none;
+    border-radius:60px;
+    cursor:pointer;
+}
+
+#yesBtn{background:linear-gradient(135deg,#ff416c,#ff4b2b);color:white;}
+#noBtn{background:rgba(0,0,0,0.55);color:white;}
+
+.loop{animation:bounce 0.6s infinite;}
+@keyframes bounce{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.25);}
+    100%{transform:scale(1);}
+}
+
+.hidden{display:none;}
+#message{margin-top:25px;font-size:26px;}
+
+@keyframes wiggle{
+    0%{transform:rotate(0deg);}
+    25%{transform:rotate(5deg);}
+    50%{transform:rotate(0deg);}
+    75%{transform:rotate(-5deg);}
+    100%{transform:rotate(0deg);}
+}
+
+/* ===================== */
+/* ORIGINAL NAILONGS */
+/* ===================== */
+#nailong{
+    position: absolute;
+    width:450px;
+    height:auto;
+    animation: wiggle 2s infinite;
+    right: -280px;
+    top: 20px;
+}
+#nailong2{
+    position: absolute;
+    width:410px;
+    height:auto;
+    animation: wiggle 2s infinite;
+    bottom: 6px;
+    left: 48%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+#nailong3{
+    position: absolute;
+    width:340px;
+    height:auto;
+    animation: wiggle 2s infinite;
+    bottom: -10px;
+    left: 516px;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+#nailong4{
+    position: absolute;
+    width:300px;
+    height:auto;
+    animation: wiggle 2s infinite;
+    bottom: -10px;
+    left: 200px;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+#nailong5{
+    position: absolute;
+    width: 500px;
+    height: auto;
+    top: 0;
+    left: 60%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+#nailong6{
+    position: absolute;
+    width: 150px;
+    height: auto;
+    top: 2px;
+    left: 40%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+#nailong8{
+    position: absolute;
+    width: 300px;
+    height: auto;
+    top: 0;
+    left: 150%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+#nailong9{
+    position: absolute;
+    width: 300px;
+    height: auto;
+    top: 40px;
+    left: 30%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+#nailong11{
+    position: absolute;
+    width: 10px;
+    height: auto;
+    top: 0;
+    left: 30%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+#nailong12{
+    position: absolute;
+    width: 300px;
+    height: auto;
+    top: 0;
+    left: 70%;
+    transform: translateX(-50%);
+    z-index: 1;
+    pointer-events: none;
+}
+/* default hidden */
+#nailong7,#nailong10{display:none;}
+
+/* ===================== */
+/* NEW SPECIAL NAILONGS */
+/* ===================== */
+#nailong17{
+    position:absolute;
+    width:260px;
+    right:-320px;
+    top:80%;
+    transform:translateY(-40%);
+    display:none;
+    z-index:4;
+}
+#nailong19{
+    position:absolute;
+    width:230px;
+    left:-300px;
+    top:0%;
+    transform:rotate(90deg);
+    display:none;
+    z-index:4;
+}
+
+/* slide animations */
+.slide-left{animation:slideLeft 0.6s forwards;}
+.slide-right{animation:slideRight 0.6s forwards;}
+.slide-in-left{animation:slideInLeft 0.6s forwards;}
+.slide-out-left{animation:slideOutLeft 0.6s forwards;}
+
+@keyframes slideLeft{to{right:1px;}}
+@keyframes slideRight{to{right:-320px;}}
+@keyframes slideInLeft{to{left:1px;}}
+@keyframes slideOutLeft{to{left:-300px;}}
+
+/* ===================== */
+/* YES BUTTON OVERLAY NAILONGS */
+/* ===================== */
+.yes-wrapper{
+    position: relative;
+}
+
+#nailong20{
+    position:absolute;
+    width:120px;
+    bottom:-250px;
+    left:50%;
+    transform:translateX(-50%);
+    display:none;
+    z-index:1;
+}
+
+.slide-up{
+    animation:slideUp 0.8s forwards;
+}
+
+@keyframes slideUp{
+    to{bottom:10px;}
+}
+
+#nailong16{
+    position:absolute;
+    width:260px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display:none;
+    z-index:20;
+}
+
+/* MOBILE ADJUST */
+@media(max-width:768px){
+    #nailong20{width:90px;}
+    #nailong16{width:200px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💘 Can You Be My Valentine? 💘</h1>
+    <p>Please say yes… 🥺❤️</p>
+
+    <div class="buttons">
+        <img src="nailong.jpg" id="nailong">
+
+        <div class="yes-wrapper">
+            <button id="yesBtn">YES 💖</button>
+            <img src="nailong20.jpg" id="nailong20">
+        </div>
+
+        <button id="noBtn">NO 💔</button>
+        <audio id="noSound" src="tease.mp3" preload="auto"></audio>
+    </div>
+
+    <h2 id="message" class="hidden">YAY!!! 💕 I knew it 😘🌹</h2>
+</div>
+
+<img src="nailong2.jpg" id="nailong2" alt="cute nailong">
+<img src="nailong3.jpg" id="nailong3" alt="cute nailong">
+<img src="nailong4.jpg" id="nailong4" alt="cute nailong">
+<img src="nailong5.jpg" id="nailong5" alt="cute nailong">
+<img src="nailong6.jpg" id="nailong6" alt="cute nailong">
+<img src="nailong7.jpg" id="nailong7" alt="cute nailong">
+<img src="nailong8.jpg" id="nailong8" alt="cute nailong">
+<img src="nailong9.jpg" id="nailong9" alt="cute nailong">
+<img src="nailong10.jpg" id="nailong10" alt="cute nailong">
+<img src="nailong11.jpg" id="nailong11" alt="cute nailong">
+<img src="nailong12.jpg" id="nailong12" alt="cute nailong">
+<!-- NEW -->
+<img src="nailong17.jpg" id="nailong17">
+<img src="nailong19.jpg" id="nailong19">
+<img src="nailong16.jpg" id="nailong16">
+
+<script>
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+const message=document.getElementById("message");
+const n17=document.getElementById("nailong17");
+const n19=document.getElementById("nailong19");
+const nailong20=document.getElementById("nailong20");
+const nailong16=document.getElementById("nailong16");
+const noSound = document.getElementById("noSound");
+
+let growStep = 0;
+const maxGrow = 6;
+
+// NO button bounce
+noBtn.addEventListener("click", () => {
+    noSound.currentTime = 0; // para ulit-ulit kahit mabilis pindot
+    noSound.play();
+});
+noBtn.addEventListener("click", () => {
+    growStep++;
+    if(growStep > maxGrow){ growStep = 1; yesBtn.style.transform = "scale(1)"; }
+    const scale = 1 + (growStep * 0.25);
+    yesBtn.style.transform = `scale(${scale})`;
+});
+
+// YES button behavior with new Nailongs
+yesBtn.addEventListener("click", () => {
+
+    yesBtn.classList.add("loop");
+    message.classList.remove("hidden");
+    noBtn.style.display = "none";
+
+    // show nailong20 inside button
+    nailong20.style.display="block";
+    nailong20.className="slide-up";
+
+    // hide nailong20 + yes-wrapper after 10s, show nailong16
+    setTimeout(()=>{
+        nailong20.style.display="none";
+        document.querySelector(".yes-wrapper").style.display="none";
+
+        nailong16.style.display="block";
+
+        setTimeout(()=>{
+            nailong16.style.display="none";
+        },10000);
+
+    },10000);
+
+});
+
+// NO button Nailongs animation
+noBtn.addEventListener("click",()=>{
+
+    n17.style.display="block";
+    n17.className="slide-left";
+
+    n19.style.display="block";
+    n19.className="slide-in-left";
+
+    setTimeout(()=>{
+        n17.className="slide-right";
+        n19.className="slide-out-left";
+    },3000);
+
+    setTimeout(()=>{
+        n17.style.display="none";
+        n19.style.display="none";
+    },3600);
+});
+
+// duplicate yes click removed, using single listener
+
+// hearts
+for(let i=0;i<25;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.fontSize=(Math.random()*20+15)+"px";
+    h.style.animationDuration=(Math.random()*3+4)+"s";
+    document.body.appendChild(h);
+}
+</script>
+
+</body>
+</html>
